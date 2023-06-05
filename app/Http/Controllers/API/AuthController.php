@@ -49,4 +49,29 @@ class AuthController extends Controller
     	return response()->json($response, 200);
     }
 
+    /**
+     * Login method through API
+     */
+    public function login(Request $request) : JsonResponse
+    {
+    	if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+
+    		$user = Auth::user();
+
+    		$data['token'] = $user->createToken('MyApp')->plainTextToken;
+	    	$data['name'] = $user->name;
+
+	    	return response()->json([
+	    		'success' => true,
+	    		'data' => $data,
+	    		'message' => 'User login successfully.',
+	    	], 200);
+
+    	} else {
+    		return response()->json([
+    			'success' => false,
+    			'message' => 'Unauthorized',
+    		], 401);
+    	}
+    }
 }
