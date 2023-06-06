@@ -17,6 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'tomtom_api_key' => env('TOMTOM_API_KEY', null),
 
     /*
     |--------------------------------------------------------------------------
