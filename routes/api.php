@@ -16,15 +16,15 @@ use App\Http\Controllers\API\PlaceController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum','throttle:30,1')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(AuthController::class)->group(function() {
+Route::middleware('throttle:30,1')->controller(AuthController::class)->group(function() {
 	Route::post('login', 'login');
 	Route::post('register','register');
 });
 
-Route::middleware('auth:sanctum')->controller(PlaceController::class)->group(function() {
+Route::middleware('auth:sanctum','throttle:30,1')->controller(PlaceController::class)->group(function() {
 	Route::get('places', 'places');
 });
