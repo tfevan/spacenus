@@ -7,33 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Validator;
 use Illuminate\Support\Facades\Http;
+use App\Http\Requests\API\PlaceRequest;
 
 class PlaceController extends Controller
 {
 	/**
      * Get a list of nearby places based on the provided coordinates. 
      */
-    public function places(Request $request) : JsonResponse
+    public function places(PlaceRequest $request) : JsonResponse
     {
-    	$validator = Validator::make($request->all(), [
-    		'lat' => [
-    			'required',
-    			'regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'
-    		],
-    		'long' => [
-    			'required',
-    			'regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/'
-    		],
-    	]);
-
-    	if ($validator->fails()) {
-    		return response()->json([
-    			'success' => false,
-    			'data' => [],
-    			'message' => $validator->errors(),
-    		], 400);
-    	}
-
     	$response = Http::withUrlParameters([
 		    'endpoint' => 'https://api.tomtom.com',
 		    'page' => 'search',
