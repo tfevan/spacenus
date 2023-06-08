@@ -37,35 +37,30 @@ class PlaceController extends Controller
     	} elseif ($response->status() == 400) {
     		return response()->json([
 	    		'success' => false,
-	    		'data' => [],
 	    		'message' => 'Bad Request : One or more parameters were incorrectly specified.'
 	    	], 400);
 
     	} elseif ($response->status() == 403) {
     		return response()->json([
 	    		'success' => false,
-	    		'data' => [],
 	    		'message' => 'Forbidden'
 	    	], 403);
 
     	} elseif ($response->status() == 405) {
     		return response()->json([
 	    		'success' => false,
-	    		'data' => [],
 	    		'message' => 'Method Not Allowed'
 	    	], 405);
 
     	} elseif ($response->status() == 429) {
     		return response()->json([
 	    		'success' => false,
-	    		'data' => [],
 	    		'message' => 'Too Many Requests : The API Key is over QPS (Queries per second).'
 	    	], 429);
 
     	} else {
     		return response()->json([
 	    		'success' => false,
-	    		'data' => [],
 	    		'message' => 'Server Error : The service was unable to process your request.'
 	    	], 500);
     	}
