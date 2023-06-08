@@ -5,8 +5,9 @@ namespace App\Http\Requests\API;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\JsonResponse;
 
-class PlaceRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +25,8 @@ class PlaceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'lat' => [
-                'required',
-                'regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'
-            ],
-            'long' => [
-                'required',
-                'regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/'
-            ],
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required',
         ];
     }
 
@@ -42,7 +37,7 @@ class PlaceRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'success' => false,
-            'message' => 'Validation failed',
+            'message' => 'Login failed.',
             'errors' => $validator->errors()
         ], 422));
     }

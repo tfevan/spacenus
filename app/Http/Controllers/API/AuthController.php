@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\API\RegisterRequest;
+use App\Http\Requests\API\LoginRequest;
 use Illuminate\Http\JsonResponse;
 use App\Models\User;
 use Validator;
@@ -38,7 +39,7 @@ class AuthController extends Controller
     /**
      * Login method through API
      */
-    public function login(Request $request) : JsonResponse
+    public function login(LoginRequest $request) : JsonResponse
     {
     	if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
 

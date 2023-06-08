@@ -41,6 +41,6 @@ class RegisterRequest extends FormRequest
             'success' => false,
             'message' => 'Registration failed.',
             'errors' => $validator->errors()
-        ]));
+        ], 422));
     }
 }
