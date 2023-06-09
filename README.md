@@ -68,14 +68,11 @@ This API only accept `application/json` as header  :
 Accept: application/json
 ```
 
-
 ## Create a User Registration :
 
 ```http
 POST /api/register
 ```
-
-
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -115,7 +112,7 @@ This will return a `422` status code with below JSON response :
 ```javascript
 {
     "success": bool,
-    "message": "Registration failed.",
+    "message": string,
     "errors": {
         "key1": [
             string
@@ -132,13 +129,9 @@ Postman Example :
 ![Register-error1](https://i.stack.imgur.com/UO5td.png)
 
 
-
 #### ![#1589F0](https://placehold.co/15x15/1589F0/1589F0.png) Too Many Requests (429)
 
 429  status code indicates the client has sent too many requests in a given amount of time. This will return a HTML page.
-
-
-
 
 
 ## User Login :
@@ -177,7 +170,6 @@ Postman Example :
 ![Login](https://i.stack.imgur.com/bNrSe.png)
 
 
-
 #### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Unprocessable entity (422) 
 This will return a `422` status code with below JSON response : 
 
@@ -198,8 +190,6 @@ Postman Example :
 ![Login-error-422](https://i.stack.imgur.com/v97UO.png)
 
 
-
-
 #### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Unauthorized (401) 
 This will retuen a `401` status code with below JSON response : 
 
@@ -218,7 +208,6 @@ Postman Example :
 #### ![#1589F0](https://placehold.co/15x15/1589F0/1589F0.png) Too Many Requests (429)
 
 429  status code indicates the client has sent too many requests in a given amount of time. This will return a HTML page.
-
 
 
 ## Nearby Places Search :
@@ -557,7 +546,6 @@ Successful operation will return a `200` status code. Here is an example below :
 }
 ```
 
-
 #### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Unprocessable Content (422) 
 This will retuen a `422` status code with below JSON response : 
 
@@ -578,7 +566,6 @@ Postman Example :
 ![422-error](https://i.stack.imgur.com/7kaQn.png)
 
 
-
 #### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Bad Request (400) 
 This will return a `400` status code with below JSON response : 
 
@@ -594,6 +581,20 @@ Postman Example :
 ![400-error](https://i.stack.imgur.com/E3Fu0.png)
 
 
+#### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Unauthorized (401) 
+This will return a `401` status code with below JSON response : 
+
+```javascript
+{
+    "message": string
+}
+```
+
+Postman Example :
+
+![401-error](https://i.stack.imgur.com/iGAWa.png)
+
+
 #### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Forbidden (403) 
 This will return a `403` status code with below JSON response : 
 
@@ -603,8 +604,6 @@ This will return a `403` status code with below JSON response :
     "message": string,
 }
 ```
-
-
 
 #### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Method Not Allowed (405) 
 This will return a `405` status code with below JSON response : 
@@ -616,7 +615,6 @@ This will return a `405` status code with below JSON response :
 }
 ```
 
-
 #### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Too Many Requests (429) 
 This will return a `429` status code with below JSON response : 
 
@@ -626,7 +624,6 @@ This will return a `429` status code with below JSON response :
     "message": string,
 }
 ```
-
 
 #### ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Server Error (500) 
 This will return a `500` status code with below JSON response : 
